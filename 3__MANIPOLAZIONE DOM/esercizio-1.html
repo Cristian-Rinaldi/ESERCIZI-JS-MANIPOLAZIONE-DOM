@@ -16,12 +16,30 @@ Creare un checkbox per ogni task aggiunto.
     <div>
       <h1>To-do List</h1>
       <input type="text" placeholder="..." />
-      <button onclick="addProduct()">Aggiungi</button>
-      <ul id="productList">
-
-      </ul>
+      <button onclick="addProduct(event)">Aggiungi</button>
+      <ul id="productList"></ul>
     </div>
     <script>
-    
+      function addProduct(event) {
+        event.preventDefault();
+        const myinput = document.querySelector("input");
+        const ul = document.getElementById("productList");
+
+        const lista = document.createElement("li");
+        lista.innerHTML = `<input type="checkbox"> ${myinput.value}`;
+
+        ul.appendChild(lista);
+
+      }
+
+// const checkbox = document.createElement("input");  //crea l'input 
+// checkbox.type = "checkbox";                        //di tipo checkbox
+// const text = document.createTextNode(myinput.value);  
+
+// const list = document.createElement("li"); 
+// list.appendChild(checkbox); 
+// list.appendChild(text); 
+
     </script>
-  </body
+  </body>
+</html>
