@@ -9,6 +9,7 @@ Infine recuperare l'elemento form e aggiungere l'attributo data-person contenent
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
+
   <body>
     <div id="container">
       <form>
@@ -28,32 +29,32 @@ Infine recuperare l'elemento form e aggiungere l'attributo data-person contenent
     </div>
 
     <script>
-        //Recuperare il valore di ciascun campo di input
-        const nome= document.getElementById("firstName").value;
-        const cognome= document.getElementById("lastName").value;
-        const eta= document.getElementById("age").value;
-        console.log(nome, cognome,eta );
-        //creare un oggetto person contenente le proprietà: firstName, lastName e age.
-        const person= {
-            firstName: "cristian", 
-            lastName: "rinaldi", 
-             age:25
-        }
-        console.log(person);
+      //Recuperare il valore di ciascun campo di input
+      const nome = document.getElementById("firstName").value;
+      const cognome = document.getElementById("lastName").value;
+      const eta = document.getElementById("age").value;
+      console.log(nome, cognome, eta);
+      //creare un oggetto person contenente le proprietà: firstName, lastName e age.
+      const person = {
+        firstName: "cristian",
+        lastName: "rinaldi",
+        age: 25,
+      };
+      console.log(person);
 
-//Infine recuperare l'elemento form e aggiungere l'attributo data-person contenente l'oggetto person in formato json. 
+      //Infine recuperare l'elemento form e aggiungere l'attributo data-person contenente l'oggetto person in formato json.
+      
+      //-----O P Z I O N E    1   C O R T A --------//
+      const form1 = document.querySelector("form"); //selezionare a quale elemento aggiungere la proprietà
+      form1.setAttribute("dataPerson", JSON.stringify(person));//setAttribute crea l'attributo e assega il valore accetta 2 parametri il primo è quale attibuto assegnare e il secondo paramettro corrisponde al valore da assegnare 
+      console.log(form1);
+      //-----O P Z I O N E    2   L U N G A --------//
+      const form = document.querySelector("form");   //selzione dell'elemento dove vogliamo fare manipolazione 
+      const newAttribut = document.createAttribute("dataPerson");//creato solo la proprietà dataPerson
+      newAttribut.value = JSON.stringify(person); //assegnato in secondo momento il valore 
+      form.setAttributeNode(newAttribut); //aggiunto l'attributo nuovo al form
+      console.log(form); 
 
-        //-----O P Z I O N E    1    L U N G A --------//
-        const form = document.querySelector("form");
-        const newAttribut= document.createAttribute("dataPerson")
-        newAttribut.value = JSON.stringify(person)
-        form.setAttributeNode(newAttribut)
-        console.log(form)
-
-        //-----O P Z I O N E    2   C O R T A --------//
-        const form2 = document.querySelector("form");
-        form.setAttribute("dataPerson", JSON.stringify(person)) 
-        console.log(form)
     </script>
   </body>
 </html>

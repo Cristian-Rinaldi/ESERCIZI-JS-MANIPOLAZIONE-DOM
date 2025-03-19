@@ -20,17 +20,20 @@ Creare un checkbox per ogni task aggiunto.
       <ul id="productList"></ul>
     </div>
     <script>
-      function addProduct(event) {
-        event.preventDefault();
-        const myinput = document.querySelector("input");
-        const ul = document.getElementById("productList");
+      function addProduct(event) {                      // //il parametro event fa riferimento alla proprietà onsubmit messa nel form 
+        event.preventDefault();                        //preveniamo il comportamento do defaul di invio automatico
+        const myinput = document.querySelector("input"); //richiamiamo l'input per il riferimento di dove prendere i valoroi di task
+        const ul = document.getElementById("productList");// rihiamiamo productList fa riferimento a dove aggiungere i task
 
-        const lista = document.createElement("li");
-        lista.innerHTML = `<input type="checkbox"> ${myinput.value}`;
+        
+        const lista = document.createElement("li");         //creiamo un elemento html li
+        lista.innerHTML = `<input type="checkbox"> ${myinput.value}`; //aggiorniamo il li e all'interno mettiamo come valore una checkobox e il valore dell'input 
 
-        ul.appendChild(lista);
+        ul.appendChild(lista);   //aggiunge il list item creato precedentemente alla lista ul 
+        myinput.value= "";     //svuota il campo di testo dopo aver aggiunto 
 
       }
+      addProduct()
 
 // const checkbox = document.createElement("input");  //crea l'input 
 // checkbox.type = "checkbox";                        //di tipo checkbox
