@@ -4,32 +4,37 @@ Recuperare il valore di ciascun campo di input e creare un oggetto person conten
 Infine recuperare l'elemento form e aggiungere l'attributo data-person contenente l'oggetto person in formato json. -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
 
-  <body>
-    <div id="container">
-      <form>
-        <div>
-          <label>First Name:</label>
-          <input type="text" class="form-input" id="firstName" value="Mario" />
-        </div>
-        <div>
-          <label>Last Name:</label>
-          <input type="text" class="form-input" id="lastName" value="Rossi" />
-        </div>
-        <div>
-          <label>Age:</label>
-          <input type="number" class="form-input" id="age" value="25" />
-        </div>
-      </form>
-    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
 
-    <script>
-      //Recuperare il valore di ciascun campo di input
+<body>
+  <div id="container">
+    <form>
+      <div>
+        <label>First Name:</label>
+        <input type="text" class="form-input" id="firstName" placeholder="Mario" />
+      </div>
+      <div>
+        <label>Last Name:</label>
+        <input type="text" class="form-input" id="lastName" placeholder="Rossi" />
+      </div>
+      <div>
+        <label>Age:</label>
+        <input type="number" class="form-input" id="age" placeholder="25" />
+      </div>
+      <button type="submit">iscriviti</button>
+    </form>
+  </div>
+
+  <script>
+    //Recuperare il valore di ciascun campo di input
+    const form = document.querySelector("form");   //selezioniamo il form che è l'elemento da manipolare
+    form.addEventListener("submit", (event) => {  //dal form ascolta per quesll'evento submit e passa una callback in questo caso arrow
+      event.preventDefault()                       //preveniamo il comportamento di invio automatico del form
       const nome = document.getElementById("firstName").value;
       const cognome = document.getElementById("lastName").value;
       const eta = document.getElementById("age").value;
@@ -41,20 +46,25 @@ Infine recuperare l'elemento form e aggiungere l'attributo data-person contenent
         age: 25,
       };
       console.log(person);
-
-      //Infine recuperare l'elemento form e aggiungere l'attributo data-person contenente l'oggetto person in formato json.
-      
       //-----O P Z I O N E    1   C O R T A --------//
-      const form1 = document.querySelector("form"); //selezionare a quale elemento aggiungere la proprietà
-      form1.setAttribute("dataPerson", JSON.stringify(person));//setAttribute crea l'attributo e assega il valore accetta 2 parametri il primo è quale attibuto assegnare e il secondo paramettro corrisponde al valore da assegnare 
-      console.log(form1);
-      //-----O P Z I O N E    2   L U N G A --------//
-      const form = document.querySelector("form");   //selzione dell'elemento dove vogliamo fare manipolazione 
-      const newAttribut = document.createAttribute("dataPerson");//creato solo la proprietà dataPerson
-      newAttribut.value = JSON.stringify(person); //assegnato in secondo momento il valore 
-      form.setAttributeNode(newAttribut); //aggiunto l'attributo nuovo al form
-      console.log(form); 
+      form.setAttribute("dataPerson", JSON.stringify(person));   //setAttribute crea l'attributo e assega il valore accetta 2 parametri il primo è quale attibuto assegnare e il secondo paramettro corrisponde al valore da assegnare 
+      //JSON.stringify(perdon) converte l'oggetto in stringa formato JSON
+      console.log(form);
+    })
 
-    </script>
-  </body>
+
+
+
+
+
+    //-----O P Z I O N E    2   L U N G A --------//
+    // const form = document.querySelector("form");   //selzione dell'elemento dove vogliamo fare manipolazione
+    // const newAttribut = document.createAttribute("dataPerson");//creato solo la proprietà dataPerson
+    // newAttribut.value = JSON.stringify(person); //assegnato in secondo momento il valore
+    // form.setAttributeNode(newAttribut); //aggiunto l'attributo nuovo al form
+    // console.log(form); 
+
+  </script>
+</body>
+
 </html>
