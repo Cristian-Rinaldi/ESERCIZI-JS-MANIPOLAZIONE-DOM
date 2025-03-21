@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Benvenuto utente</h1>
+    <form>
+      <input required type="text" placeholder="Name" name="name" id="name" maxlength="20" minlength="3"/>
+      <label for="name">Inserisci il tuo nome</label>
+
+      <button type="submit">Invia</button>
+    </form>
+
+    <script>
+      const form = document.querySelector("form"); //selezione del form per manipolarlo
+      form.addEventListener("submit", (event) => {  //ascolta l'evento del form quando farà invio con param. event
+        event.preventDefault();  //preveniamo l'invio automatico del form che lo fa di default
+
+        const input = document.getElementById("name"); //selezione dell'id dell'input di testo
+        const valoreInput = input.value;//creiamo la costante che si riferisce al valore scitto nel campo di testo
+        console.log("Il nome dell'utente è:", valoreInput); 
+
+        const h1 = document.querySelector("h1"); //scostante che fa riferimento al titolo per manipolarlo dopo
+        h1.innerText = `Benvenuto ${valoreInput}`;//modifichiamo il contenuto del titolo con il valore dell'input
+
+
+        //----------------------------------L O C A L  S T O R A G E        S E T   I T E M    ---------------------------------
+
+        localStorage.setItem("name", valoreInput);
+        /*
+        1) LOCAL STORAGE CI PERMETTE DI SALVARE I DATI A LIVELLO LOCALE CHE L'UTENTE ANDRA' A METTERE COME VALORE NELL'INPUT(RESTERANNO SALVATI OGNI VOLTA CHE ACCEDEREMO AL SITO O AL REFRASH DELLA PAGINA O SE PRENDIAMO LO STESSO URL E LO APRIREMO IN UN'ALTA FINESTR O BROWSER)
+        2) localStorage.setItem SETITEM è IL CODICE CHE CI PERMETTE SALVARLI I DATI NELLO SPAZIO DI ARCHIVIAZIONE E ACCETTA 2 PARAMETRI
+        IL 1 è IL NOME DELLA CHIAVE CON CUI POI ANDREMO A RICHIAMARLO  IL 2 è IL VALORE DELL'INPUT CONTENUTO NELLA CHIAVE
+        */
+
+        
+        //---------------------------------S E S S I O N   S T O R A G E        S E T   I T E M    ---------------------------------
+        sessionStorage.setItem("name", valoreInput);
+         /*
+        1) SESSION STORAGE CI PERMETTE DI SALVARE I DATI ALL'INTERNO DELLA SOLA SESSIONE QUANDO ANDRA' A METTERE COME VALORE NELL'INPUT(RESTERANNO SALVATI SOLO AL REFRASH DELLA PAGINA )
+        2) sessionStorage.setItem SETITEM è IL CODICE CHE CI PERMETTE SALVARLI I DATI NELLO SPAZIO DI ARCHIVIAZIONE E ACCETTA 2 PARAMETRI
+        IL 1 è IL NOME DELLA CHIAVE CON CUI POI ANDREMO A RICHIAMARLO  IL 2 è IL VALORE DELL'INPUT CONTENUTO NELLA CHIAVE
+        */
+      });
+
+      //---------------------------------L O C A L   S T O R A G E        G E T   I T E M     ---------------------------------
+      const name = localStorage.getItem("name");
+      
+      if (name) {
+        const h1 = document.querySelector("h1");
+        h1.innerText = `Benvenuto ${name}`;
+      }
+      /* CREARE LA COSTANTE DOOVE SALVAREMO DENTRO IL localStorage.getItem questo serve per poi richiamare la constante in una condizione if il localStorage.getItem accetta 1 solo parameto che sarebbe la chiave creata in precedenza con il localStorage.setItem("name", valoreInput) 
+      NELLA CONDIZIONE IF ANDIAMO A DIRE CHE SE LA COSTANTE NAME CIOè IL NOSTRO localStorage.getItem HA VOLORE TRUE ALLORA ANDIAMO A CREARE COSTANTE CHE SARà IL RIFERIMENTO DEL TITOLO E GLI AGGIORNIAMO IL CONTENUTO CON UNA STRINGA A NOSTRO PIACIMENTO E LA CONSTANTE NAME CHE CI RESTITUIRà IL VALORE DELL'INPUT */
+
+
+
+
+//---------------------------------S E S S I O N    S T O R A G E        G E T   I T E M     ---------------------------------
+     const namee = sessionStorage.getItem("name");
+    if (namee) {
+            const h1 = document.querySelector("h1");
+            h1.innerText = `Benvenuto ${namee}`;
+        }
+
+           /* CREARE LA COSTANTE DOOVE SALVAREMO DENTRO IL sessionStorage.getItem questo serve per poi richiamare la constante in una condizione if il sessionStorage.getItem accetta 1 solo parameto che sarebbe la chiave creata in precedenza con il sessionStorage.setItem("name", valoreInput) 
+      NELLA CONDIZIONE IF ANDIAMO A DIRE CHE SE LA COSTANTE NAME CIOè IL NOSTRO sessionStorage.getItem HA VOLORE TRUE ALLORA ANDIAMO A CREARE la COSTANTE CHE SARà IL RIFERIMENTO DEL TITOLO E GLI AGGIORNIAMO IL CONTENUTO CON UNA STRINGA A NOSTRO PIACIMENTO E LA CONSTANTE NAME CHE CI RESTITUIRà IL VALORE DELL'INPUT */
+    </script>
+  </body>
+</html>
