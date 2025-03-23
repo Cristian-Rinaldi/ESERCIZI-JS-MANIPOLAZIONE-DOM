@@ -4,3 +4,63 @@ Nome del personaggio
 immagine del personaggio
 Prova a fetchare una card dal db del gioco di carte di Lord of the Rings, la documentazione dell'API la puoi trovare a questo link: https://ringsdb.com/api/doc
 Fai in modo che nella tua pagina html spuntino il nome del personaggio della carta, la sua immagine -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fetch</title>
+</head>
+
+<body>
+
+    <h1 class="title"></h1>
+    <img id="cover" src="" alt="">
+
+
+
+    <script>
+        const title = document.querySelector(".title") //prendiamo il titolo da manipolare
+        const cover = document.getElementById("cover") //prendiamo il lìimmagine da manipolare
+
+        async function recuperoDati() {
+            try {
+                const response = await fetch("https://ringsdb.com/api/public/cards/") //per prendere un API si mette il dominio principale in questo caso    "https://ringsdb.com"      piu l' EADPOINT specifici in questo caso    "api/public/cards/"
+                const datiApiJson = await response.json() //conversione API in formato json che ha ritornato un array di carte
+                const primaCarta = datiApiJson[0] //andiamo a selzionare la prima carta con la sintassi array e posizione 
+
+
+                const nomePersonaggio = primaCarta.name //salviamo il valore del nome della carta in una costante per andare a richiamarla
+                const immagineCover = primaCarta.imagesrc //salviamo il valore dell'immagine della carta in una costante per andare a richiamarla
+
+                title.innerText = `il nome del personaggio è : ${nomePersonaggio}`//aggiungiamo il valore della chiave nome del personaggio nel titolo
+                cover.src = `https://ringsdb.com${immagineCover}` //andiamo a mettere un src nella nostra immagine e cper dare un valore di un'immagine non basta solo la sintassi oggetto.chiave in questo caso racchiusta nella constante immagineCover ma bisgona riportare ul dominio principale dellìAPI  perché la proprietà  che ottieni dall'API è un percorso relativo e non un URL completo.
+
+            } catch (error) {
+                console.error(error)
+            }
+        }
+        recuperoDati()
+
+
+        //-----------------------------------------------------------------------------------------------------------------
+        const h1 = document.querySelector("h1");
+        const img = document.querySelector("img");
+        fetch("https://ringsdb.com/api/public/cards/")
+            .then((response) => {
+                 return response.json() })
+            .then((data) => {
+                console.log(data);
+                h1.textContent = data[0].name;
+                img.src = "https://ringsdb.com${data[0].imagesrc}";
+            })
+            .catch((error) => { console.error(error) })
+
+
+
+
+    </script>
+</body>
+
+</html>

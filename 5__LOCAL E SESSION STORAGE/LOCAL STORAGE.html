@@ -43,6 +43,7 @@
     const lastname = document.querySelector(".lastname");
     const email = document.querySelector(".email");
     const bottone = document.querySelector(".btn");
+    const span=document.querySelector(".title-name")
 
     bottone.addEventListener("click", ()=>{
         const valoreNome= nome.value;
@@ -54,19 +55,18 @@
          localStorage.setItem("firstname", valoreNome);
         localStorage.setItem("lastname", valoreLastname);
         localStorage.setItem("email", valoreEmail);
-            }
-        }
-        salvaDatiLocale();
-        const span = document.querySelector(".title-name");
-        span.innerText= `${valoreNome}` 
+    }
+}
+salvaDatiLocale();
+span.innerText= `${valoreNome}` 
     })
     const salvataggioNome= localStorage.getItem("firstname")
     if(salvataggioNome){
        span.innerText= salvataggioNome
     }
 
-
-        
+   
+    
 
     </script>
 </body>
