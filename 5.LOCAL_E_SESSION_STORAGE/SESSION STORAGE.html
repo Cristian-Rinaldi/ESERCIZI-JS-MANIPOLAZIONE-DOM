@@ -54,9 +54,8 @@
         }
 
         const salvaName= sessionStorage.getItem("firstname")
-        const salvaLastname= sessionStorage.getItem("lastname")
-        const salvaEmail= sessionStorage.getItem("email")
-        if(salvaName&& salvaLastname&&salvaEmail){
+     
+        if(salvaName){
             const span=document.querySelector(".title-name")
             span.innerText= `${salvaName} `
         }
