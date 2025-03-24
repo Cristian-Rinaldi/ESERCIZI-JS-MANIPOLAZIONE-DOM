@@ -1,0 +1,136 @@
+
+<h2>-----  N A V I G A R E    N E L   D O M------</h2>
+
+Obiettivo:
+Selezionare tutti gli elementi  p presenti nella pagina e cambiarne il colore del testo.
+utilizza document.quryselector all itera sui risultati e cambia colore in blu
+
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Navigare il DOM</title>
+    <style>
+      p {
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Primo paragrafo</p>
+    <p>Secondo paragrafo</p>
+    <p>Terzo paragrafo</p>
+<script>
+const paragrafi = document.querySelectorAll("p")
+console.log(paragrafi)
+paragrafi.forEach((value)=>{
+value.style.color = "blue"
+})
+
+</script>
+
+</body>
+</html>
+
+<h2>----- C R E A R E   E L E M E N T I   N E L   d o M ------</h2>
+
+Creare dinamicamente un nuovo elemento  DIV contenente del testo e aggiungerlo a un contenitore esistente.
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Creare Elementi</title>
+  </head>
+  <body>
+    <div id="container">
+      <h2>Contenitore</h2>
+    </div>
+
+<script>
+const divGiaEsistente= document.getElementById("container")
+const nuovoDiv= document.createElement("div")
+nuovoDiv.innerText="sono il nuovo div generato"
+divGiaEsistente.appendChild(nuovoDiv)
+</script>
+</body>
+</html>
+
+<h2>----- M A N I P O L A R E   E L E M E N T I   N E L   d o M ------</h2>
+
+ 
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Manipolazione Eventi</title>
+  </head>
+  <body>
+    <button id="myButton">Cliccami e aggiorna il testo</button>
+    <p id="message">Messaggio originale</p>
+
+    <script>
+      const bottone= document.getElementById("myButton")
+      const paragrafo= document.getElementById("message")
+
+      bottone.addEventListener("click",()=>{
+        paragrafo.innerText="il testo è stato aggiornato al click"
+      })
+
+
+    </script>
+  </body>
+</html>
+
+<h2>-----S E T   T I M E O U T  ------</h2>
+ Modificare il contenuto di un elemento dopo un tempo stabilito (ad esempio, 3 secondi).
+ <!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8">
+    <title>Esercizio setTimeout</title>
+  </head>
+  <body>
+    <h1>Esercizio setTimeout</h1>
+    <p id="message">Questo messaggio cambierà tra 3 secondi...</p>
+
+    <script>
+        setTimeout(()=>{
+            document.getElementById("message").innerText= "testo modificato dopo 3 seocndi "
+        },3000)
+  
+    </script>
+  </body>
+</html> 
+
+<h2>-----S E T   I N  T E R V A  L ------</h2>
+
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8">
+    <title>Esercizio setInterval</title>
+  </head>
+  <body>
+    <h1>Timer con setInterval</h1>
+    <p id="timer">0</p>
+
+    <script>
+      let contatore = 0;
+    const timer= document.getElementById("timer");
+    const body= document.querySelector("body")
+    const paragrafo0= document.createElement("p")
+    let idinterval= setInterval(()=>{
+        contatore++ 
+        if(contatore === 5 ){
+            clearInterval(idinterval)
+            paragrafo0.innerText=`il conteggio si è fermato a ${contatore}`
+            body.appendChild(paragrafo0)
+           
+        }
+        timer.innerText= contatore
+    },1000)
+    
+  
+    </script>
+  </body>
+</html>
