@@ -41,19 +41,23 @@ Fai in modo che nella tua pagina html spuntino il nome del personaggio della car
                 console.error(error)
             }
         }
-        recuperoDati()
+         recuperoDati()
 
 
         //-----------------------------------------------------------------------------------------------------------------
+
+
+
+
         const h1 = document.querySelector("h1");
         const img = document.querySelector("img");
-        fetch("https://ringsdb.com/api/public/cards/")
+        fetch("https://ringsdb.com/api/public/card/01004")
             .then((response) => {
                  return response.json() })
             .then((data) => {
                 console.log(data);
-                h1.textContent = data[0].name;
-                img.src = "https://ringsdb.com${data[0].imagesrc}";
+                h1.textContent = data.name;
+                img.src =`https://ringsdb.com${data.imagesrc}`;
             })
             .catch((error) => { console.error(error) })
 
